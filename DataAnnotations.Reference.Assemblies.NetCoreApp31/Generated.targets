@@ -1,0 +1,8 @@
+<Project>
+    <ItemGroup>
+        <EmbeddedResource Include="$(NuGetPackageRoot)\system.componentmodel.annotations\5.0.0\ref\netstandard2.1\System.ComponentModel.Annotations.dll">
+          <LogicalName>netcoreapp31.System.ComponentModel.Annotations</LogicalName>
+          <Link>Resources\netcoreapp31\System.ComponentModel.Annotations.dll</Link>
+        </EmbeddedResource>
+    </ItemGroup>
+  </Project>

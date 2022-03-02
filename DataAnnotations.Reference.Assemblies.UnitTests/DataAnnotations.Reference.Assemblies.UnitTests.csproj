@@ -1,0 +1,42 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
+    <PackageReference Include="System.ComponentModel.Annotations"/>
+    <PackageReference Include="xunit" Version="2.4.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
+    <PackageReference Include="coverlet.collector" Version="1.2.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.9.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DataAnnotations.Reference.Assemblies.Net50\DataAnnotations.Reference.Assemblies.Net50.csproj">
+      <Aliases>RefNet50</Aliases>
+    </ProjectReference>
+    <ProjectReference Include="..\DataAnnotations.Reference.Assemblies.Net60\DataAnnotations.Reference.Assemblies.Net60.csproj">
+      <Aliases>RefNet60</Aliases>
+    </ProjectReference>
+    <ProjectReference Include="..\DataAnnotations.Reference.Assemblies.NetCoreApp31\DataAnnotations.Reference.Assemblies.NetCoreApp31.csproj">
+      <Aliases>RefNetCoreApp31</Aliases>
+    </ProjectReference>
+    <ProjectReference Include="..\DataAnnotations.Reference.Assemblies.NetStandard13\DataAnnotations.Reference.Assemblies.NetStandard13.csproj">
+      <Aliases>RefNetStandard13</Aliases>
+    </ProjectReference>
+    <ProjectReference Include="..\DataAnnotations.Reference.Assemblies.NetStandard20\DataAnnotations.Reference.Assemblies.NetStandard20.csproj">
+      <Aliases>RefNetStandard20</Aliases>
+    </ProjectReference>
+    <ProjectReference Include="..\DataAnnotations.Reference.Assemblies.Net472\DataAnnotations.Reference.Assemblies.Net472.csproj">
+      <Aliases>RefNet472</Aliases>
+    </ProjectReference>
+    <ProjectReference Include="..\DataAnnotations.Reference.Assemblies.Net461\DataAnnotations.Reference.Assemblies.Net461.csproj">
+      <Aliases>RefNet461</Aliases>
+    </ProjectReference>
+    <ProjectReference Include="..\DataAnnotations.Reference.Assemblies\DataAnnotations.Reference.Assemblies.csproj" />
+  </ItemGroup>
+
+</Project>
