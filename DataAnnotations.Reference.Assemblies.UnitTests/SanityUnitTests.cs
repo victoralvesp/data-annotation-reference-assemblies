@@ -1,14 +1,29 @@
+using Basic.Reference.Assemblies;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using System;
 using System.IO;
 using System.Linq;
 using Xunit;
-using DataAnnotations.Reference.Assemblies;
 
 namespace DataAnnotations.Reference.Assemblies.UnitTests
 {
-    public class SanityUnitTests
+    public class BaseSanityUT
+    {
+        internal static Basic.Reference.Assemblies.ReferenceAssemblyKind ConvertToBasicReferenceKind(ReferenceAssemblyKind kind) => kind switch
+        {
+            ReferenceAssemblyKind.NetCoreApp31 => Basic.Reference.Assemblies.ReferenceAssemblyKind.NetCoreApp31,
+            ReferenceAssemblyKind.Net50 => Basic.Reference.Assemblies.ReferenceAssemblyKind.Net50,
+            ReferenceAssemblyKind.Net60 => Basic.Reference.Assemblies.ReferenceAssemblyKind.Net60,
+            ReferenceAssemblyKind.NetStandard20 => Basic.Reference.Assemblies.ReferenceAssemblyKind.NetStandard20,
+            ReferenceAssemblyKind.NetStandard13 => Basic.Reference.Assemblies.ReferenceAssemblyKind.NetStandard13,
+            ReferenceAssemblyKind.Net461 => Basic.Reference.Assemblies.ReferenceAssemblyKind.Net461,
+            ReferenceAssemblyKind.Net472 => Basic.Reference.Assemblies.ReferenceAssemblyKind.Net472,
+            _ => throw new NotImplementedException(),
+        };
+    }
+
+    public class SanityUnitTests : BaseSanityUT
     {
         [Fact]
         public void AllCanCompile()
@@ -32,7 +47,7 @@ public class C
                     "Example",
                     new[] { CSharpSyntaxTree.ParseText(source) },
                     references: ReferenceAssemblies.Get(kind));
-
+                compilation = compilation.WithReferenceAssemblies(ConvertToBasicReferenceKind(kind));
                 // NetStandard1.3 comes with several no warn options we need here
                 if (kind == ReferenceAssemblyKind.NetStandard13)
                 {
@@ -70,7 +85,8 @@ public class C
                     "Example",
                     new[] { CSharpSyntaxTree.ParseText(source) },
                     references: Array.Empty<MetadataReference>());
-                compilation = compilation.WithDataAnnotationAssemblies(kind);
+                compilation = compilation.WithDataAnnotationAssemblies(kind)
+                                    .WithReferenceAssemblies(ConvertToBasicReferenceKind(kind));
 
                 // NetStandard1.3 comes with several no warn options we need here
                 if (kind == ReferenceAssemblyKind.NetStandard13)

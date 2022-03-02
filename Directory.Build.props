@@ -5,20 +5,24 @@
     <LangVersion>latest</LangVersion>
     <DebugType>Embedded</DebugType>
     <EmbedAllSources>True</EmbedAllSources>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)Key.snk</AssemblyOriginatorKeyFile>
+    
 
     <!-- NuGet Properties -->
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <RepositoryUrl>https://github.com/jaredpar/basic-reference-assemblies</RepositoryUrl>
-    <Authors>jaredpar</Authors>
-    <Title>Basic.Reference.Assemblies: Reference assemblies for use in Roslyn</Title>
+    <RepositoryUrl>https://github.com/victoralvesp/data-annotation-reference-assemblies</RepositoryUrl>
+    <Authors>victoralvesp</Authors>
+    <Title>DataAnnotations.Reference.Assemblies: Reference assemblies for use in Roslyn</Title>
     <PackageDescription>
-This package provides reference assemblies for use in Roslyn Compilation objects. This greatly
+This package provides System.ComponentModel.DataAnnotations reference assemblies for use in Roslyn Compilation objects. This greatly
 simplifies the work involved in doing in memory compilations with the Microsoft.CodeAnalysis 
 API. Developers can now create correct Compilations with reference sets from all of the major
 target frameworks: netcoreapp31, net50 and netstandard.
     </PackageDescription>
   </PropertyGroup>
+
+	<PropertyGroup Condition=" '$(SignWithKey)' == 'true'">
+		<SignAssembly>true</SignAssembly>
+		<AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)Key.snk</AssemblyOriginatorKeyFile>
+	</PropertyGroup>
 
 </Project>

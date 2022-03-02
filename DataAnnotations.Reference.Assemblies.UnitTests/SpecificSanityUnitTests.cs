@@ -6,6 +6,7 @@ extern alias RefNetStandard20;
 extern alias RefNet461;
 extern alias RefNet472;
 
+using Basic.Reference.Assemblies;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -24,7 +25,7 @@ namespace DataAnnotations.Reference.Assemblies.UnitTests
     using Net461 = RefNet461::DataAnnotations.Reference.Assemblies.Net461;
     using Net472 = RefNet472::DataAnnotations.Reference.Assemblies.Net472;
 
-    public class SpecificSanityUnitTests
+    public class SpecificSanityUnitTests : BaseSanityUT
     {
         [Fact]
         public void NetCoreApp31Tests()
@@ -33,7 +34,7 @@ namespace DataAnnotations.Reference.Assemblies.UnitTests
             {
                 Assert.NotNull(portableRef);
             }
-            Assert.True(NetCoreApp31.All.Count() > 50);
+            Assert.True(NetCoreApp31.All.Count() >= 1);
             Assert.Equal("DataAnnotations.Reference.Assemblies.NetCoreApp31", typeof(NetCoreApp31).Assembly.GetName().Name);
         }
 
@@ -53,7 +54,8 @@ class Program
             var compilation = CSharpCompilation.Create(
                 "Example",
                 new[] { CSharpSyntaxTree.ParseText(source) },
-                references: NetCoreApp31.All);
+                references: NetCoreApp31.All)
+                .WithReferenceAssemblies(ConvertToBasicReferenceKind(ReferenceAssemblyKind.NetCoreApp31));;
 
             Assert.Empty(compilation.GetDiagnostics());
             using var stream = new MemoryStream();
@@ -69,7 +71,7 @@ class Program
             {
                 Assert.NotNull(portableRef);
             }
-            Assert.True(Net50.All.Count() > 50);
+            Assert.True(Net50.All.Count() >= 1);
             Assert.Equal("DataAnnotations.Reference.Assemblies.Net50", typeof(Net50).Assembly.GetName().Name);
         }
 
@@ -89,7 +91,8 @@ class Program
             var compilation = CSharpCompilation.Create(
                 "Example",
                 new[] { CSharpSyntaxTree.ParseText(source) },
-                references: Net50.All);
+                references: Net50.All)
+                .WithReferenceAssemblies(ConvertToBasicReferenceKind(ReferenceAssemblyKind.Net50));
 
             Assert.Empty(compilation.GetDiagnostics());
             using var stream = new MemoryStream();
@@ -105,7 +108,7 @@ class Program
             {
                 Assert.NotNull(portableRef);
             }
-            Assert.True(Net60.All.Count() > 60);
+            Assert.True(Net60.All.Count() >= 1);
             Assert.Equal("DataAnnotations.Reference.Assemblies.Net60", typeof(Net60).Assembly.GetName().Name);
         }
 
@@ -125,7 +128,8 @@ class Program
             var compilation = CSharpCompilation.Create(
                 "Example",
                 new[] { CSharpSyntaxTree.ParseText(source) },
-                references: Net60.All);
+                references: Net60.All)
+                .WithReferenceAssemblies(ConvertToBasicReferenceKind(ReferenceAssemblyKind.Net60));
 
             Assert.Empty(compilation.GetDiagnostics());
             using var stream = new MemoryStream();
@@ -141,7 +145,7 @@ class Program
             {
                 Assert.NotNull(portableRef);
             }
-            Assert.True(NetStandard20.All.Count() > 50);
+            Assert.True(NetStandard20.All.Count() >= 1);
             Assert.Equal("DataAnnotations.Reference.Assemblies.NetStandard20", typeof(NetStandard20).Assembly.GetName().Name);
         }
 
@@ -152,7 +156,7 @@ class Program
             {
                 Assert.NotNull(portableRef);
             }
-            Assert.True(NetStandard13.All.Count() > 40);
+            Assert.True(NetStandard13.All.Count() >= 1);
             Assert.Equal("DataAnnotations.Reference.Assemblies.NetStandard13", typeof(NetStandard13).Assembly.GetName().Name);
         }
 
@@ -163,7 +167,7 @@ class Program
             {
                 Assert.NotNull(portableRef);
             }
-            Assert.True(Net461.All.Count() > 50);
+            Assert.True(Net461.All.Count() >= 1);
             Assert.Equal("DataAnnotations.Reference.Assemblies.Net461", typeof(Net461).Assembly.GetName().Name);
         }
 
@@ -183,7 +187,8 @@ class Program
             var compilation = CSharpCompilation.Create(
                 "Example",
                 new[] { CSharpSyntaxTree.ParseText(source) },
-                references: Net461.All);
+                references: Net461.All)
+                .WithReferenceAssemblies(ConvertToBasicReferenceKind(ReferenceAssemblyKind.Net461));
 
             Assert.Empty(compilation.GetDiagnostics());
             using var stream = new MemoryStream();
@@ -199,7 +204,7 @@ class Program
             {
                 Assert.NotNull(portableRef);
             }
-            Assert.True(Net472.All.Count() > 50);
+            Assert.True(Net472.All.Count() >= 1);
             Assert.Equal("DataAnnotations.Reference.Assemblies.Net472", typeof(Net472).Assembly.GetName().Name);
         }
 
@@ -219,7 +224,8 @@ class Program
             var compilation = CSharpCompilation.Create(
                 "Example",
                 new[] { CSharpSyntaxTree.ParseText(source) },
-                references: Net472.All);
+                references: Net472.All)
+                .WithReferenceAssemblies(ConvertToBasicReferenceKind(ReferenceAssemblyKind.Net472));
 
             Assert.Empty(compilation.GetDiagnostics());
             using var stream = new MemoryStream();
